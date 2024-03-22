@@ -48,7 +48,22 @@ bool checkDouble(std::string str)
 	
 bool checkFloat(std::string str)
 {
-
+	int decimal = 0;
+	int f = 0;
+	for(int i = 0, str[i], i++)
+	{
+		if (is_digit(str[i]) = true)
+			continue;
+		else if(str[i] == '.')
+			decimale ++;
+		else if(str[i] == 'f')
+			f ++;
+		else
+			return(false);
+	}
+	else if(decimal = 1 && str[back - 1] == '.' && f = 1 && str[back] == 'f')
+		return(true);
+	return(false);
 }
 
 bool checkSpecial(std::string str)
