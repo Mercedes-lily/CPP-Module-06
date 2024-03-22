@@ -1,9 +1,6 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <climits>
+#include "main.hpp"
 
-charcast(std::string str)
+void charcast(char *str)
 {
 	char c = static_cast<char>(str[0]);
 	std::cout << "char   : '" << c << "'"<< std::endl;
@@ -12,11 +9,11 @@ charcast(std::string str)
 	std::cout << "float  : " << static_cast<float>(c) << std::endl;
 }
 
-intcast(std::string str)
+void intcast(char *str)
 {
-	int i = atoi(str);
+	double i = atoi(str);
 	if(i < 0 || i > 127)
-		std::cout << "char   : char overflow" << std::endl
+		std::cout << "char   : char overflow" << std::endl;
 	else if((i >= 0 && i <= 31) || i == 127)
 		std::cout << "char   : Non displayable" << std::endl;
 	else 
@@ -26,10 +23,10 @@ intcast(std::string str)
 	std::cout << "float  : " << static_cast<float>(i) << std::endl;
 }
 
-doublecast(std::string str)
+void doublecast(char *str)
 {
-	double d = atof(str);
-	if(str.compare == "nan")
+	double d = std::strtod(str, NULL);
+	if(std::strcmp("nan", str) == true)
 	{
 		std::cout << "char   : impossible" << std::endl;
 		std::cout << "int    : impossible" << std::endl;
@@ -37,7 +34,7 @@ doublecast(std::string str)
 		std::cout << "float  : " << static_cast<float>(d) << std::endl;
 	}
 	if(d < 0 || d > 127)
-		std::cout << "char   : char overflow" << std::endl
+		std::cout << "char   : char overflow" << std::endl;
 	else if((d >= 0 && d <= 31) || d == 127)
 		std::cout << "char   : Non displayable" << std::endl;
 	else 
@@ -50,10 +47,10 @@ doublecast(std::string str)
 	std::cout << "float  : " << static_cast<float>(d) << std::endl;
 }
 
-floatcast(std::string str)
+void floatcast(char *str)
 {
-	float f = strtof(str, NULL);
-	if(str.compare == "nanf")
+	float f = std::strtof(str, NULL);
+	if(std::strcmp("nanf", str) == true)
 	{
 		std::cout << "char   : impossible" << std::endl;
 		std::cout << "int    : impossible" << std::endl;
@@ -61,12 +58,12 @@ floatcast(std::string str)
 		std::cout << "float  : " << f << std::endl;
 	}
 	if(f < 0 || f > 127)
-		std::cout << "char   : char overflow" << std::endl
+		std::cout << "char   : char overflow" << std::endl;
 	else if((f >= 0 && f <= 31) || f == 127)
 		std::cout << "char   : Non displayable" << std::endl;
 	else 
 		std::cout << "char   : '" << static_cast<char>(f) << "'"<< std::endl;
-	if (d > INT_MAX || d < INT_MIN)
+	if (f > INT_MAX || f < INT_MIN)
 		std::cout << "int   : " << "int overflow" << std::endl;
 	else
 		std::cout << "int    : " << static_cast<int>(f) << std::endl;

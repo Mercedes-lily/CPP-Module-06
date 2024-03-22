@@ -1,30 +1,18 @@
-#include <iostream>
-#include <string>
-#include <cctype>
-
-enum checkType
-{
-	TYPECHAR,
-	TYPEINT,
-	TYPEDOUBLE,
-	TYPEFLOAT
-	TYPEOTHER
-};
-
+#include "main.hpp"
 
 bool checkChar(std::string str)
 {
-	if(str.length == 1)
+	if(str.length() == 1)
 		return(true);
 	return(false);
 }
 
 bool checkInt(std::string str)
 {
-	for(int i = 0, str[i], i++)
+	for(int i = 0; str[i]; i++)
 	{
-		if (is_digit(str[i]) = false)
-			return(false)
+		if (is_digit(str[i]) != 0)
+			return(false);
 	}
 	return(true);
 }
@@ -32,16 +20,16 @@ bool checkInt(std::string str)
 bool checkDouble(std::string str)
 {
 	int decimal = 0;
-	for(int i = 0, str[i], i++)
+	for(int i = 0; str[i]; i++)
 	{
-		if (is_digit(str[i]) = true)
+		if (is_digit(str[i]) = 0)
 			continue;
 		else if(str[i] == '.')
-			decimale ++;
+			decimal++;
 		else
 			return(false);
 	}
-	else if(decimal < 1 && str[back] != '.' )
+	if(decimal < 1 && str.back() != '.' )
 		return(true);
 	return(false);
 }
@@ -50,40 +38,40 @@ bool checkFloat(std::string str)
 {
 	int decimal = 0;
 	int f = 0;
-	for(int i = 0, str[i], i++)
+	for(int i = 0; str[i]; i++)
 	{
-		if (is_digit(str[i]) = true)
+		if (is_digit(str[i]) == 0)
 			continue;
 		else if(str[i] == '.')
-			decimale ++;
+			decimal++;
 		else if(str[i] == 'f')
 			f ++;
 		else
 			return(false);
 	}
-	else if(decimal = 1 && str[back - 1] == '.' && f = 1 && str[back] == 'f')
+	if(decimal == 1 && str[str.length() - 2] == '.' && f == 1 && str.back() == 'f')
 		return(true);
 	return(false);
 }
 
 bool checkSpecial(std::string str)
 {
-	if(str.compare == "nanf" || str.compare == "-inff" || str.compare == "+inff")
-		return(TYPEFLOAT)
-	else if(str.compare == "nan" || str.compare == "-inf" || str.compare == "+inf")
-		return(TYPEDOUBLE)
-	return(TYPEOTHER)
+	if(str.compare("nanf") == true || str.compare("-inff") == true || str.compare("+inff") == true)
+		return(TYPEFLOAT);
+	else if(str.compare("nan") == true || str.compare("-inf") == true || str.compare("-inff") == true)
+		return(TYPEDOUBLE);
+	return(TYPEOTHER);
 }
 
 int checkType(std::string str)
 {
-	if (checkChar(std::string str) == true)
+	if (checkChar(str) == true)
 		return(TYPECHAR);
-	else if (checkInt(std::string str) == true)
+	else if (checkInt(str) == true)
 		return(TYPEINT);
-	else if (checkDouble(std::string str) == true)
+	else if (checkDouble(str) == true)
 		return(TYPEDOUBLE);
-	else if (checkFloat(std::string str) == true)
+	else if (checkFloat(str) == true)
 		return(TYPEFLOAT);
-	return(checkSpecial(std::string str));
+	return(checkSpecial(str));
 }

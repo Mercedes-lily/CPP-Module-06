@@ -1,5 +1,4 @@
-#include "checker.cpp"
-#include "cast.cpp"
+#include "main.hpp"
 
 int main(int argc, char** argv)
 {
