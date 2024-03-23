@@ -11,6 +11,8 @@ bool checkInt(std::string str)
 {
 	for(int i = 0; str[i]; i++)
 	{
+		if (i == 0 && str[i] == '-')
+			continue;
 		if (!isdigit(str[i]))
 			return(false);
 	}
@@ -22,7 +24,9 @@ bool checkDouble(std::string str)
 	int decimal = 0;
 	for(int i = 0; str[i]; i++)
 	{
-		if (isdigit(str[i]))
+		if (i == 0 && str[i] == '-')
+			continue;
+		else if (isdigit(str[i]))
 			continue;
 		else if(str[i] == '.' && str[i + 1])
 			decimal++;
@@ -40,6 +44,8 @@ bool checkFloat(std::string str)
 	int f = 0;
 	for(int i = 0; str[i]; i++)
 	{
+		if (i == 0 && str[i] == '-')
+			continue;
 		if (isdigit(str[i]))
 			continue;
 		else if(str[i] == '.' && str[i + 1] != 'f')
