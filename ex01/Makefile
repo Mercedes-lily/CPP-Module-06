@@ -1,20 +1,18 @@
-NAME = staticcast
+NAME = reinterpretcast
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address
 
 OBJ_DIR = obj/
 
-SRCS =	cast.cpp \
-		checker.cpp \
-		main.cpp
+SRCS =	main.cpp
 
 VPATH = $(OBJ_DIR)
 
 OBJS = $(SRCS:%.cpp=%.o)
 OBJ_PRE = $(addprefix $(OBJ_DIR), $(OBJS))
 
-DEP = main.hpp
+DEP = serialization.hpp
 
 all: $(NAME)
 
