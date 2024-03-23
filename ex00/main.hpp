@@ -11,18 +11,18 @@
 
 enum checkType
 {
-	TYPECHAR,
-	TYPEINT,
-	TYPEDOUBLE,
-	TYPEFLOAT,
-	TYPEOTHER
+	TYPECHAR = 0,
+	TYPEINT = 1,
+	TYPEDOUBLE = 2,
+	TYPEFLOAT = 3,
+	TYPEOTHER = 4
 };
 
 bool checkChar(std::string str);
 bool checkInt(std::string str);
 bool checkDouble(std::string str);
 bool checkFloat(std::string str);
-bool checkSpecial(std::string str);
+int checkSpecial(std::string str);
 int checkType(std::string str);
 void charcast(char *str);
 void intcast(char *str);

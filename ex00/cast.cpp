@@ -6,7 +6,7 @@ void charcast(char *str)
 	std::cout << "char   : '" << c << "'"<< std::endl;
 	std::cout << "int    : " << static_cast<int>(c) << std::endl;
 	std::cout << "double : " << static_cast<double>(c) << std::endl;
-	std::cout << "float  : " << static_cast<float>(c) << std::endl;
+	std::cout << "float  : " << static_cast<float>(c) << "f" << std::endl;
 }
 
 void intcast(char *str)
@@ -20,18 +20,19 @@ void intcast(char *str)
 		std::cout << "char   : '" << static_cast<char>(i) << "'"<< std::endl;
 	std::cout << "int    : " << i << std::endl;
 	std::cout << "double : " << static_cast<double>(i) << std::endl;
-	std::cout << "float  : " << static_cast<float>(i) << std::endl;
+	std::cout << "float  : " << static_cast<float>(i) << "f" << std::endl;
 }
 
 void doublecast(char *str)
 {
 	double d = std::strtod(str, NULL);
-	if(std::strcmp("nan", str) == true)
+	if (std::strcmp("nan", str) == 0)
 	{
 		std::cout << "char   : impossible" << std::endl;
 		std::cout << "int    : impossible" << std::endl;
 		std::cout << "double : " << d << std::endl;
-		std::cout << "float  : " << static_cast<float>(d) << std::endl;
+		std::cout << "float  : " << static_cast<float>(d) << "f" << std::endl;
+		return;
 	}
 	if(d < 0 || d > 127)
 		std::cout << "char   : char overflow" << std::endl;
@@ -44,18 +45,19 @@ void doublecast(char *str)
 	else
 		std::cout << "int    : " << static_cast<int>(d) << std::endl;
 	std::cout << "double : " << d << std::endl;
-	std::cout << "float  : " << static_cast<float>(d) << std::endl;
+	std::cout << "float  : " << static_cast<float>(d) << "f" << std::endl;
 }
 
 void floatcast(char *str)
 {
 	float f = std::strtof(str, NULL);
-	if(std::strcmp("nanf", str) == true)
+	if(std::strcmp("nanf", str) == 0)
 	{
 		std::cout << "char   : impossible" << std::endl;
 		std::cout << "int    : impossible" << std::endl;
 		std::cout << "double : " << static_cast<float>(f) << std::endl;
-		std::cout << "float  : " << f << std::endl;
+		std::cout << "float  : " << f << "f" << std::endl;
+		return;
 	}
 	if(f < 0 || f > 127)
 		std::cout << "char   : char overflow" << std::endl;
@@ -68,5 +70,5 @@ void floatcast(char *str)
 	else
 		std::cout << "int    : " << static_cast<int>(f) << std::endl;
 	std::cout << "double : " << static_cast<double>(f) << std::endl;
-	std::cout << "float  : " << f << std::endl;
+	std::cout << "float  : " << f << "f" << std::endl;
 }

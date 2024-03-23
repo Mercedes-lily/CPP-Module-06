@@ -11,7 +11,7 @@ bool checkInt(std::string str)
 {
 	for(int i = 0; str[i]; i++)
 	{
-		if (is_digit(str[i]) != 0)
+		if (!isdigit(str[i]))
 			return(false);
 	}
 	return(true);
@@ -22,14 +22,14 @@ bool checkDouble(std::string str)
 	int decimal = 0;
 	for(int i = 0; str[i]; i++)
 	{
-		if (is_digit(str[i]) = 0)
+		if (isdigit(str[i]))
 			continue;
-		else if(str[i] == '.')
+		else if(str[i] == '.' && str[i + 1])
 			decimal++;
 		else
 			return(false);
 	}
-	if(decimal < 1 && str.back() != '.' )
+	if(decimal == 1)
 		return(true);
 	return(false);
 }
@@ -40,27 +40,30 @@ bool checkFloat(std::string str)
 	int f = 0;
 	for(int i = 0; str[i]; i++)
 	{
-		if (is_digit(str[i]) == 0)
+		if (isdigit(str[i]))
 			continue;
-		else if(str[i] == '.')
+		else if(str[i] == '.' && str[i + 1] != 'f')
 			decimal++;
-		else if(str[i] == 'f')
-			f ++;
+		else if(str[i] == 'f' && !str[i + 1])
+			f++;
 		else
 			return(false);
 	}
-	if(decimal == 1 && str[str.length() - 2] == '.' && f == 1 && str.back() == 'f')
+	if(decimal == 1 && f == 1)
 		return(true);
 	return(false);
 }
 
-bool checkSpecial(std::string str)
+int checkSpecial(std::string str)
 {
-	if(str.compare("nanf") == true || str.compare("-inff") == true || str.compare("+inff") == true)
-		return(TYPEFLOAT);
-	else if(str.compare("nan") == true || str.compare("-inf") == true || str.compare("-inff") == true)
-		return(TYPEDOUBLE);
-	return(TYPEOTHER);
+	int type;
+	if (str.compare("nan") == 0 || str.compare("-inf") == 0 || str.compare("+inf") == 0)
+		type = TYPEDOUBLE;
+	else if (str.compare("nanf") == 0 || str.compare("-inff") == 0 || str.compare("+inff") == 0)
+		type = TYPEFLOAT;
+	else
+		type = TYPEOTHER;
+	return(type);
 }
 
 int checkType(std::string str)
